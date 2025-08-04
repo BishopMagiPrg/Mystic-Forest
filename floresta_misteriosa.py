@@ -1,11 +1,20 @@
-# Inicialização do jogo
-inventario = []
-jogo_ativo = True
-final_alcancado = False
-print("🌲Bem-vindo à Floresta Misteriosa 🌲")
-print("Tu és um explorador corajoso que entra numa floresta cheia de segredos...")
+import random
 
-while jogo_ativo and not final_alcancado:
+# Função principal do jogo
+def inicial_jogo():
+    print("\n🌲 Bem-vindo à Floresta Misteriosa 🌲")
+    print("Tu és um explorador corajoso que entra numa floresta cheia de segredo...")
+
+    inventario = []
+    jogo_ativo = True
+    final_alcancado = False
+
+    while jogo_ativo and not final_alcancado:
+        final_alcancado, jogo_ativo = menu_principal(inventario)
+
+# Menu de escolhas principais
+
+def menu_principal(inventario):
     print("\nChegas a uma bifurcação. Escolhes ir para:")
     print("1 - Caminho da esquerda (mais escuro e silencioso)")
     print("2 - Caminho da direita (claro com sons de água)")
@@ -13,95 +22,141 @@ while jogo_ativo and not final_alcancado:
     print("4 - Ver inventário")
     print("0 - Sair do jogo")
 
-    escolha1 = input("Digite 1, 2, 3, 4 ou 0: ")
+    escolha = input("Digite 1, 2, 3, 4 ou 0: ")
 
-    if escolha1 == "0":
+    if escolha == "0":
         print("👋 Obrigado por jogar! Até à próxima.")
-        jogo_ativo = False
-    
-    elif escolha1 == "4":
+        return False, False
+    elif escolha == "4":
         print(f"\n📦 Inventário: {inventario if inventario else 'Vazio'}")
-
-    elif escolha1 == "1":
-        print("\n🌑 Caminhas pelo trilho escuro...")
-        print("O chão range e ouves passos atrás de ti.")
-        print("Surge um velho guardião da floresta e oferece-te algo.")
-
-        print("\nAceitas o objeto misterioso?")
-        print("1 - Sim")
-        print("2 - Não")
-        escolha2 = input("Tua escolha: ")
-
-        if escolha2 == "1":
-            if "mapa mágico" not in inventario:
-                print("\n🎁 Recebeste um mapa mágico! Ele brilha e mostra um caminho oculto.")
-                inventario.append("mapa mágico")
-            else:
-                print("🗺️ Já tens o mapa mágico.")
-        else:
-            print("\n🚪 Recusas o objeto. O guardião desaparece.")
-    
-    elif escolha1 == "2":
-        print("\n💧 Segues o som da água e chegas a um lago com uma ponte dourada.")
-        print("Uma criatura aquática bloqueia a ponte e propõe um desafio de lógica.")
-
-        print("\nAceitas o desafio?")
-        print("1 - Sim")
-        print("2 - Não")
-        escolha2 = input("Tua escolha: ")
-
-        if escolha2 == "1":
-            print("\n❓ A criatura pergunta: Qual é o número mágico entre 1 e 10?")
-            numero = input("Tenta adivinhar: ")
-            if numero == "7":
-                print("\n🎯 Acertaste! A ponte revela o caminho para a Cidade Submersa.")
-                print("🏁 Final bom!")
-                final_alcancado = True
-            else:
-                print("\n💥 Erro! A ponte desaparece. Ficas preso à margem. Final neutro.")
-                final_alcancado = True
-
-    elif escolha1 == "3":
-        print("\n🌲🌲🌲Caminhas fundo na floresta e vês algo a brilhar entre as árvores.")
-        print("🌀 É um portal escondido. Que decides fazer?")
-        print("1 - Passas pelo portal")
-        print("2 - Voltas para trás")
-        portalescolha = input("Decisão: ")
-
-        if portalescolha == "1":
-            print("\n🌟 Atravessas o portal e estás numa sala branca com um veado místico.")
-            print("🦌 O veado pergunta se tens coragem de entrar numa casa assombrada.")
-            print("1 - Entras na casa")
-            print("2 - Não entras")
-            veadoescolha = input("Tua escolha: ")
-
-            if veadoescolha == "1":
-                print("\n🏚️ A casa por dentro é de madeira e tem uma escadaria.")
-                print("Há uma porta com um terminal e um enigma:")
-                print("🧠 Enigma: 4 + 8 / 2 * 2")
-
-                try:
-                    resposta = int(input("Qual o resultado? "))
-                except ValueError:
-                    print("❌ Resposta inválida. Ficaste perdido para sempre...")
-                    final_alcancado = True
-                else:
-                    if resposta == 12:
-                        print("🌞 Conseguiste escapar do laboratorio.")
-                        if "mapa mágico" in inventario:
-                            print("🗺️ Usas o mapa mágico para encontrar a saída secreta. Final lendário!")
-                        else:
-                            print("Final bom.")
-                        final_alcancado = True
-                    else:
-                        print("❌ Resposta errada. Final sombrio.")
-                        final_alcancado = True
-            else:
-                print("🌑 A sala escurece e desapareces no vazio. Final escuro.")
-                final_alcancado = True
-        else:
-            print("🔄 Voltas à bifurcação.")
-
+        return False, True
+    elif escolha == "1":
+        return caminho_esquerdo(inventario), True
+    elif escolha == "2":
+        return caminho_direito(), True
+    elif escolha == "3":
+        return caminho_frente(inventario), True
     else:
         print("❌ Escolha inválida. Tenta novamente.")
+        return False, True
 
+# Caminho da esquerda - encontro com o guardião
+
+def caminho_esquerdo(inventario):
+    print("\n🌑 Caminhas pelo trilho escuro... Surge um velho guardião.")
+    print("Ele oferece-te um objecto misterioso.")
+    print("1 - Aceitar\n2 - Recusar")
+    escolha = input("Tua escolha: ")
+
+    if escolha == "1":
+        if "mapa mágico" not in inventario:
+            print("🎁 Recebeste um mapa mágico!")
+            inventario.append("mapa mágico")
+        else:
+            print("🗺️ Já tens o mapa mágico.")
+    else:
+        print("🚪 Recusas o objecto. O guardião desaparece.")
+    return False
+
+# Caminho da direita - desafio Lógico com criatura aquática
+
+def caminho_direito():
+    print("\n💧 Encontras um lago e uma criatura propõe um desafio lógico.")
+    print("1 - Aceitar\n2 - Recusar")
+    escolha = input("Tua escolha: ")
+
+    if escolha == "1":
+        print("❓ Qual é o número mágico entre 1 e 10?")
+        resposta = input("Tenta adivinhar: ")
+        if resposta == "7":
+            print("🎯 Acertaste! Final bom: chegas à Cidade Submersa!")
+        else:
+            print("💥 Erro! A ponte desaparece. Final neutro.")
+        return True
+    else:
+        print("🐍 A criatura desaparece. Final sombrio.")
+        return True
+
+# Caminho da frente - inclui combate + enigma
+
+def caminho_frente(inventario):
+    print("\n🌲 Encontras um portal misterioso na floresta.")
+    print("1 - Entrar\n2 - Voltar atrás")
+    escolha = input("Decisão: ")
+
+    if escolha == "1":
+        venceu = combate()
+        if venceu:
+            return enigma_final(inventario)
+        else:
+            return True
+    else:
+        print("🔄 Voltas à bifurcação.")
+        return False
+
+# Função de combate entre jogador e monstro
+
+def combate():
+    print("\n⚔️ Um monstro aparece! Prepara-te para o combate!")
+
+    vida_jogador = 30
+    vida_monstro = 25
+
+    while vida_jogador > 0 and vida_monstro > 0:
+        print(f"\n❤️ Tua Vida: {vida_jogador} | 👹 Vida do Monstro: {vida_monstro}")
+        print("1 - Atacar\n2 - Defender")
+        acao = input("Tua ação: ")
+
+        if acao == "1":
+            dano = random.randint(5, 10)
+            vida_monstro -= dano
+            print(f"💥 Atingiste o monstro com {dano} de dano!")
+        elif acao == "2":
+            print("🛡️ Defendeste-te. Reduzes o dano do próximo ataque.")
+        else:
+            print("❌ Ação inválida. Perdes a vez.")
+            continue
+
+        if vida_monstro <= 0:
+            break
+
+        ataque = random.randint(4, 9)
+        if acao == "2":
+            ataque //= 2
+            print(f"👹 O monstro ataca com dano reduzido: {ataque}!")
+        else:
+            print(f"👹 O monstro ataca com {ataque} de dano!")
+        vida_jogador -= ataque
+
+    if vida_jogador > 0:
+        print("🏆 Venceste o monstro!")
+        return True
+    else:
+        print("☠️ Foste derrotado... Final sombrio.")
+        return False
+
+# Enigma final após vencer o combate
+
+def enigma_final(inventario):
+    print("\n✨ Chegas a uma sala branca com um enigma na parede.")
+    print("Enigma: Qual o resultado de 4 + (8 / 2) * 2")
+
+    try:
+        resposta = int(input("Tua resposta: "))
+    except ValueError:
+        print("❌ Resposta inválida. Final escuro.")
+        return True
+    
+    if resposta == 12:
+        if "mapa mágico" in inventario:
+            print("🗺️ Usas o mapa mágico e escapas pela saída secreta. Final lendário!")
+        else:
+            print("✨ Acertas o enigma e consegues sair. Final bom!")
+        return True
+    else:
+        print("☁️ Resposta errada. A sala escurece... Final escuro.")
+        return True
+
+# Executar o jogo
+if __name__ == "__main__":
+    inicial_jogo()
