@@ -20,7 +20,7 @@ while jogo_ativo and not final_alcancado:
         jogo_ativo = False
     
     elif escolha1 == "4":
-        print("\n📦 Inventário: {inventario if inventario else 'Vazio'}")
+        print(f"\n📦 Inventário: {inventario if inventario else 'Vazio'}")
 
     elif escolha1 == "1":
         print("\n🌑 Caminhas pelo trilho escuro...")
