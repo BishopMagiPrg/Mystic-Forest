@@ -1,20 +1,16 @@
-from modular.cenas import menu_principal
-from modular.inventario import inicializar_jogador
-import os
+from modular.menu import menu_principal
 
 def iniciar_jogo():
-    os.system('cls' if os.name == 'nt' else 'clear')
     print("\n🌲 Bem-vindo à Floresta Misteriosa 🌲")
-    print("Tu és um explorador corajoso que entra numa floresta cheia de segredos...\n")
+    print("Tu és um explorador corajoso que entra numa floresta cheia de segredos...")
 
-    inventario, vida = inicializar_jogador()
+    inventario = []
+    vida_jogador = 30
     jogo_ativo = True
     final_alcancado = False
 
     while jogo_ativo and not final_alcancado:
-        final_alcancado, jogo_ativo, vida = menu_principal(inventario, vida)
-
-    print("\n👋 Obrigado por jogar!")
+        final_alcancado, jogo_ativo, vida_jogador = menu_principal(inventario, vida_jogador)
 
 if __name__ == "__main__":
     iniciar_jogo()

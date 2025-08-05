@@ -1,11 +1,6 @@
 def enigma_final(inventario, vida_jogador):
-    """
-    Mostra um enigma ao jogador.
-    Se acertar, verifica se tem o mapa mágico.
-    Retorna (final_alcancado, jogo_ativo, vida_jogador)
-    """
     print("\n✨ Chegas a uma sala branca com um enigma na parede.")
-    print("Enigma: Qual o resultado de 4 + 8 (8 / 2) * 2 ?")
+    print("Enigma: Qual o resultado de 4 + (8 / 2) * 2")
 
     try:
         resposta = int(input("Tua resposta: "))

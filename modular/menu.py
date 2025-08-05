@@ -1,13 +1,8 @@
-# modular/menu.py
-
 from modular.cenas import caminho_esquerdo, caminho_direito, caminho_frente
 from modular.inventario import ver_inventario, usar_item
 
 def menu_principal(inventario, vida_jogador):
-    """
-    Mostra o menu de navegação principal do jogador.
-    """
-    print("\nChegas a uma bifurcação. Escolhes ir para:")
+    print("\nChegas a uma bifurcação, Escolhes ir para:")
     print("1 - Caminho da esquerda (mais escuro e silencioso)")
     print("2 - Caminho da direita (claro com sons de água)")
     print("3 - Caminho em frente (interior da floresta)")

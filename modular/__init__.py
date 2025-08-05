@@ -1,0 +1,1 @@
+# Arquivo vazio para indicar que 'modular' é um pacote Python.

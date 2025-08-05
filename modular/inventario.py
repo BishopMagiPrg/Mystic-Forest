@@ -1,31 +1,15 @@
-# modular/inventario.py
-
-def inicializar_jogador():
-    """
-    Inicializa o estado do jogador com um inventário vazio e vida inicial.
-    """
-    inventario = []
-    vida = 30
-    return inventario, vida
-
 def ver_inventario(inventario):
-    """
-    Mostra os itens atuais do jogador.
-    """
     if not inventario:
-        print("\n📦 O teu inventário está vazio.")
+        print("\n📦 Inventário: Vazio")
     else:
         print("\n📦 Inventário:")
         for item in inventario:
             print(f" - {item}")
-
-def usar_item(inventario, vida):
-    """
-    Permite ao jogador usar um item, como a poção de cura.
-    """
+        
+def usar_item(inventario, vida_jogador):
     if not inventario:
-        print("📭 O teu inventário está vazio,")
-        return vida
+        print("📭 O teu inventário está vazio.")
+        return vida_jogador
     
     print("\nItens disponíveis:")
     for i, item in enumerate(inventario):
@@ -35,10 +19,9 @@ def usar_item(inventario, vida):
 
     if escolha.isdigit():
         indice = int(escolha) - 1
-        if 0 <= indice < len(inventario):
-            item = inventario[indice]
+        if  0 <= indice < len(inventario):
             if item == "poção de cura":
-                vida += 10
+                vida_jogador += 10
                 inventario.pop(indice)
                 print("🧪 Usate uma poção de cura. +10 de vida!")
             else:
@@ -48,4 +31,4 @@ def usar_item(inventario, vida):
     else:
         print("🚫 Cancelado.")
     
-    return vida
+    return vida_jogador

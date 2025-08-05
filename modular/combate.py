@@ -1,12 +1,6 @@
-# modular/combate.py
-
 import random
 
 def combate(vida_jogador):
-    """
-    Sistema de combate entre o jogador e o monstro.
-    Retorna (venceu, nova_vida_jogador).
-    """
     print("\n⚔️ Um monstro aparece! Prepara-te para o combate!")
 
     vida_monstro = 25
@@ -19,9 +13,9 @@ def combate(vida_jogador):
         if acao == "1":
             dano = random.randint(5, 10)
             vida_monstro -= dano
-            print(f"💥 Atingiste o monstro com {dano} de dado!")
+            print(f"💥 Atingiste o monstro com {dano} de dano!")
         elif acao == "2":
-            print("🛡️ Defendeste-te. Reduzes o dano do próximo ataque.")
+            print("🛡️ Defendeste-te. Reduzes o dano do proximo ataque.")
         else:
             print("❌ Ação inválida. Perdes a vez.")
             continue
@@ -34,7 +28,8 @@ def combate(vida_jogador):
             ataque //= 2
             print(f"👹 O monstro ataca com dano reduzido: {ataque}!")
         else:
-            print(f"👹 O monstro ataca com {ataque} de dadno!")
+            print(f"👹 O monstro ataca com {ataque} de dano!")
+        
         vida_jogador -= ataque
 
     if vida_jogador > 0:
