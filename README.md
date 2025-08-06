@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/BishopMagiPrg/primeiro-projeto-python/assets/logo.png" alt="Mystic Forest Logo" width="600">
+  <img src="https://github.com/BishopMagiPrg/primeiro-projeto-python/blob/main/assets/logo.png" alt="Mystic Forest Logo" width="600">
 </p>
 
 # 🌲 Mystic Forest
