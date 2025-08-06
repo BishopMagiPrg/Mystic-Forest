@@ -1,1 +1,0 @@
-print("Olá, mundo! Este é o meu primeiro programa em Python.")
