@@ -33,20 +33,22 @@ This project is in **active development**, evolving from a simple terminal-based
 
 ## 🧱 Project Structure
 
+```
 mystic_forest/
-├── game.py # Main game loop
-├── menu.py # Menu system and scene navigation
-├── scenes.py # Game scenes and storyline
-├── combat.py # Turn-based combat logic
-├── inventory.py # Inventory system
-├── riddle.py # Final challenge
-├── utils/ # Utility modules and shared code
-│ ├── init.py
-│ ├── draw.py # Drawing utilities for GUI
-│ └── config.py # Window config, colors, paths
-├── assets/
-│ └── mystic_forest.jpg
-└── requirements.txt # Python dependencies
+├── game.py # Main game loop\n
+├── menu.py # Menu system and scene navigation\n
+├── scenes.py # Game scenes and storyline\n
+├── combat.py # Turn-based combat logic\n
+├── inventory.py # Inventory system\n
+├── riddle.py # Final challenge\n
+├── utils/ # Utility modules and shared code\n
+│ ├── init.py\n
+│ ├── draw.py # Drawing utilities for GUI\n
+│ └── config.py # Window config, colors, paths\n
+├── assets/\n
+│ └── mystic_forest.jpg\n
+└── requirements.txt # Python dependencies\n
+```
 
 ---
 
